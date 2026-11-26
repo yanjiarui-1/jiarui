@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142e2c">
+  <meta name="description" content="2027春节阿布扎比与迪拜双人自由行。13天行程、机酒、预约清单、双人预算与交通指南。">
+  <title>2027 · 春节阿联酋旅行手册</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="masthead">
+    <div class="shell masthead-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">✧</span> 阿联酋旅行手册</a>
+      <nav aria-label="快速导航"><a href="#itinerary">行程</a><a href="#booking">预约</a><a href="#checklist">待办</a><a href="#budget">预算</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <img class="hero-img" src="./mosque.jpg" alt="阿布扎比谢赫扎耶德大清真寺" fetchpriority="high">
+      <div class="shell hero-inner">
+        <p class="hero-kicker">2027 春节 · 双人自由行</p>
+        <h1 id="hero-title">阿布扎比<span class="times"> × </span>迪拜</h1>
+        <p class="hero-date">2027年2月1日 — 2月13日</p>
+        <p class="hero-copy">从海滨宫殿到沙漠日落，沿着阿拉伯湾过一个新年。</p>
+        <a class="button primary hero-button" href="#itinerary">查看每日行程</a>
+        <div class="hero-facts"><span><strong>13</strong> 天行程</span><span><strong>11</strong> 晚酒店</span><span>往返直飞</span></div>
+      </div>
+      <p class="photo-credit">谢赫扎耶德大清真寺 · Barbara Athanassiadis</p>
+    </section>
+    <div class="shell guide">
+      <aside class="contents"><nav aria-label="手册目录">
+        <h2>手册目录</h2>
+        <a href="#overview"><span>01</span> 旅行总览</a><a href="#stay"><span>02</span> 机票与酒店</a><a href="#itinerary"><span>03</span> 每日行程</a><a href="#booking"><span>04</span> 购票与预约</a><a href="#checklist"><span>05</span> 旅行待办</a><a href="#budget"><span>06</span> 费用管理</a><a href="#transport"><span>07</span> 交通指南</a><a href="#prep"><span>08</span> 出发前须知</a><a href="#notes"><span>09</span> 旅行备忘录</a>
+      </nav></aside>
+      <div class="chapters">
+        <section id="overview" class="chapter">
+          <h2><span class="chapter-no">01</span> 旅行总览</h2>
+          <p class="lede">建筑艺术、动物互动、沙漠体验和海滨风光。</p>
+          <div class="metrics" id="overview-metrics"></div>
+          <div class="overview-progress"><span id="booked-caption"></span><progress id="booked-progress" max="100" aria-label="已预订费用占比"></progress></div>
+          <div class="route-map" aria-label="旅行路线示意图">
+            <p>跨城路线 <small>示意图</small></p>
+            <div class="route-track"><a id="abu-map" href="#transport"><strong>阿布扎比</strong><small>2月2–6日</small></a><i aria-hidden="true"></i><a id="dubai-map" href="#transport"><strong>迪拜</strong><small>2月6–12日</small></a></div>
+            <p class="route-foot">北京大兴往返阿布扎比 · 2月12日从迪拜返回阿布扎比机场</p>
+          </div>
+          <details class="panel overview-table"><summary>查看 13 天速览</summary><table><thead><tr><th scope="col">日期</th><th scope="col">行程主题</th><th scope="col">住宿</th></tr></thead><tbody id="overview-days"></tbody></table></details>
+        </section>
+        <section id="stay" class="chapter">
+          <h2><span class="chapter-no">02</span> 已确认机票及酒店</h2>
+          <div id="flight-data" class="panel flight-card"></div>
+          <div id="hotel-data" class="two-col hotel-grid"></div>
+        </section>
+        <section id="itinerary" class="chapter">
+          <h2><span class="chapter-no">03</span> 每日详细行程</h2>
+          <p class="lede">选日期查看时间表。预约状态和待办清单同步。</p>
+          <div class="day-controls"><button type="button" id="prev-day">上一天</button><p id="day-label" aria-live="polite"></p><button type="button" id="next-day">下一天</button></div>
+          <div id="day-picker" class="day-picker" role="group" aria-label="选择行程日期"></div>
+          <div id="day-detail"></div>
+          <div class="day-controls bottom-controls"><button type="button" id="prev-bottom">上一天</button><p id="day-index"></p><button type="button" id="next-bottom">下一天</button></div>
+        </section>
+        <section id="booking" class="chapter">
+          <h2><span class="chapter-no">04</span> 购票与预约日历</h2>
+          <p class="lede">按建议预约日期排列。优先关注未来博物馆和哈利法塔放票情况。</p>
+          <div class="toolbar"><div id="booking-filter" class="filters" role="group" aria-label="筛选预约"></div><p id="booking-count" aria-live="polite"></p></div>
+          <div id="booking-list" class="panel item-list"></div>
+          <p class="muted caption">预约窗口用于安排准备时间。价格、开放时段和场次以出行时的官方信息为准。</p>
+        </section>
+        <section id="checklist" class="chapter">
+          <h2><span class="chapter-no">05</span> 旅行待办事项</h2>
+          <div class="panel task-progress"><p>旅行准备完成度 <strong id="task-count" aria-live="polite"></strong></p><progress id="task-progress" aria-label="旅行准备完成度"></progress></div>
+          <div class="toolbar"><div id="task-filter" class="filters" role="group" aria-label="筛选待办"></div><button type="button" data-copy="tasks">复制待办清单</button></div>
+          <div id="task-list" class="two-col"></div>
+        </section>
+        <section id="budget" class="chapter">
+          <h2><span class="chapter-no">06</span> 旅行费用管理</h2>
+          <p class="lede">所有金额按两名成人估算，单位为人民币。</p>
+          <div id="budget-summary" class="metrics budget-metrics" aria-live="polite"></div>
+          <div class="panel budget-panel">
+            <div><h3>预计支出</h3><dl id="budget-breakdown" class="detail-list"></dl></div>
+            <div><h3>调整旅行预算</h3><div id="budget-inputs"></div></div>
+            <details class="cost-detail"><summary>门票及体验明细 <strong id="experience-total"></strong></summary><dl id="experience-list" class="detail-list"></dl></details>
+            <div class="budget-footer"><p id="budget-use"></p><button type="button" data-copy="budget">复制费用预算</button></div>
+          </div>
+        </section>
+        <section id="transport" class="chapter">
+          <h2><span class="chapter-no">07</span> 交通出行指南</h2>
+          <div id="transport-list" class="travel-grid"></div>
+          <h3 class="subhead">出行软件</h3><div id="app-list" class="apps-list"></div>
+        </section>
+        <section id="prep" class="chapter">
+          <h2><span class="chapter-no">08</span> 出发前注意事项</h2>
+          <div class="callout priority"><h3>优先处理三件事</h3><ol><li>通知皇家玫瑰酒店凌晨入住。</li><li>关注未来博物馆的开放与放票公告。</li><li>确认猫头鹰咖啡馆营业及预约方式。</li></ol></div>
+          <div id="prep-list" class="two-col"></div>
+          <div class="panel emergency"><h3>紧急联系电话</h3><div><a href="tel:999">报警 <strong>999</strong></a><a href="tel:998">救护车 <strong>998</strong></a><a href="tel:997">消防 <strong>997</strong></a><a href="tel:+861012308">领保热线 <strong>+86-10-12308</strong></a></div></div>
+        </section>
+        <section id="notes" class="chapter">
+          <h2><span class="chapter-no">09</span> 旅行备忘录</h2>
+          <div class="panel notes-panel"><label for="memo">自定义旅行记录</label><textarea id="memo" rows="7" maxlength="20000" placeholder="记下门票时段、想去的餐厅、行李提醒……"></textarea><div class="toolbar"><p id="storage-note" class="caption muted">勾选、预算和备忘录保存在当前浏览器。可复制到手机备忘录留存。</p><button type="button" data-copy="memo" disabled>复制备忘录</button></div></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="footer"><div class="shell"><p>2027 春节 · 阿联酋旅行手册</p><a href="#top">回到顶部</a></div></footer>
+  <dialog id="copy-dialog"><form method="dialog"><h2>复制到备忘录</h2><p>选中下方文字即可手动复制。</p><textarea aria-label="待复制内容" rows="8" readonly></textarea><button>关闭</button></form></dialog>
+  <p id="toast" role="status" hidden></p>
+  <noscript><p class="shell">请启用 JavaScript，以查看行程和使用手册的交互功能。</p></noscript>
+</body>
+</html>
