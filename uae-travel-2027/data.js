@@ -10,22 +10,25 @@ export const flights = [
   {date:'2月12日 · 经济舱', code:'EY888', from:['21:20','AUH','阿布扎比'], to:['08:45','PKX','2月13日抵达'], duration:'7小时25分钟'},
 ];
 export const airfare = 10411;
+export const bookingRegions = { abuDhabi:'阿布扎比', dubai:'迪拜' };
 // Order by suggested start date. Each id also identifies its checklist item.
 export const booking = [
-  ['future','未来博物馆',9,'30–60天','2026年12月11日–2027年1月10日',750,'¥700–800',[link('查看馆方公告','https://museumofthefuture.ae/en')],'馆方官网目前显示展览暂时关闭，2月场次待确认。'],
-  ['burj','哈利法塔',11,'21–30天','1月12–21日',950,'¥700–1,200',[link('官方旅游购票入口','https://experiences.visitdubai.com/at-the-top-burj-khalifa-get-your-tickets')]],
-  ['sea','海洋世界',3,'7–14天','1月20–27日',1400,'¥1,200–1,600',[link('官方网站','https://www.seaworldabudhabi.com/')]],
-  ['team','teamLab现象博物馆',4,'7–14天','1月21–28日',620,'¥620起',[link('官方网站','https://www.teamlab.art/e/phenomena/')]],
-  ['owl','猫头鹰咖啡馆',5,'7–14天','1月22–29日',280,'¥280',[link('店铺导航',map('Boomah Cafe Abu Dhabi')),link('旅游局店铺介绍','https://visitabudhabi.ae/en/where-to-go/dining-and-restaurants/boomah-cafe/')],'提前向店方确认门店地址、营业状态及预约方式。'],
-  ['mosque','大清真寺免费预约',5,'7–14天','1月22–29日',0,'免费预约',[link('官方预约','https://visit.szgmc.gov.ae/')]],
-  ['desert','沙漠冲沙',7,'7–14天','1月24–31日',1600,'¥1,200–2,000',[link('Arabian Adventures','https://www.arabian-adventures.com/'),link('Platinum Heritage','https://www.platinum-heritage.com/')]],
-  ['palace','总统府',2,'3–7天','1月26–30日',290,'¥260–320',[link('官方网站','https://www.qasralwatan.ae/')]],
-  ['gold','金箔咖啡',2,'3–7天','1月26–30日',350,'¥300–400',[link('酋长皇宫酒店官网','https://www.mandarinoriental.com/en/abu-dhabi/emirates-palace')]],
-  ['water','亚特兰蒂斯水上世界',10,'7–14天','1月27日–2月3日',1500,'¥1,300–1,700',[link('官方网站','https://www.aquaventureworld.com/')]],
-  ['louvre','海上卢浮宫',4,'3–7天','1月28日–2月1日',280,'¥280',[link('官方网站','https://www.louvreabudhabi.ae/')]],
-  ['butterfly','蝴蝶花园',5,'3–7天','1月29日–2月2日',220,'¥220',[link('官方网站','https://butterflygardensabudhabi.com/plan-your-visit/')]],
-  ['frame','迪拜相框',9,'3–7天','2月2–6日',200,'¥200',[link('迪拜旅游局购票指南','https://www.visitdubai.com/en/places-to-visit/dubai-frame')]],
-].map(([id,name,day,ahead,window,price,range,links,note])=>({id,name,day,ahead,window,price,range,links,note}));
+  ['future',['未来博物馆','Museum of the Future Ticket','迪拜未来博物馆'],'dubai',9,'30–60天','2026年12月11日–2027年1月10日',750,'¥700–800',[link('查看馆方公告','https://museumofthefuture.ae/en')],'馆方官网目前显示展览暂时关闭，2月场次待确认。'],
+  ['burj',['哈利法塔','At the Top, Burj Khalifa Ticket (Levels 124 & 125)','哈利法塔124／125层观景台'],'dubai',11,'21–30天','1月12–21日',950,'¥700–1,200',[link('官方旅游购票入口','https://experiences.visitdubai.com/at-the-top-burj-khalifa-get-your-tickets')]],
+  ['sea',['海洋世界','SeaWorld Abu Dhabi Ticket','阿布扎比海洋世界'],'abuDhabi',3,'7–14天','1月20–27日',1400,'¥1,200–1,600',[link('官方网站','https://www.seaworldabudhabi.com/')]],
+  ['team',['teamLab现象博物馆','teamLab Phenomena Abu Dhabi Ticket'],'abuDhabi',4,'7–14天','1月21–28日',620,'¥620起',[link('官方网站','https://www.teamlab.art/e/phenomena/')]],
+  ['owl',['猫头鹰咖啡馆','Boomah Café Abu Dhabi'],'abuDhabi',5,'7–14天','1月22–29日',280,'¥280',[link('店铺导航',map('Boomah Cafe Abu Dhabi')),link('旅游局店铺介绍','https://visitabudhabi.ae/en/where-to-go/dining-and-restaurants/boomah-cafe/')],'提前向店方确认门店地址、营业状态及预约方式。'],
+  ['mosque',['大清真寺免费预约','Sheikh Zayed Grand Mosque Visitor Access Pass','谢赫扎耶德大清真寺免费预约'],'abuDhabi',5,'7–14天','1月22–29日',0,'免费预约',[link('官方预约','https://visit.szgmc.gov.ae/')]],
+  ['desert',['沙漠冲沙','Evening Desert Safari in Dubai','迪拜傍晚沙漠冲沙'],'dubai',7,'7–14天','1月24–31日',1600,'¥1,200–2,000',[link('Arabian Adventures','https://www.arabian-adventures.com/'),link('Platinum Heritage','https://www.platinum-heritage.com/')]],
+  ['palace',['总统府','Qasr Al Watan Presidential Palace Ticket','阿布扎比总统府'],'abuDhabi',2,'3–7天','1月26–30日',290,'¥260–320',[link('官方网站','https://www.qasralwatan.ae/')]],
+  ['gold',['金箔咖啡','Palace Cappuccino at Emirates Palace','酋长皇宫酒店金箔咖啡'],'abuDhabi',2,'3–7天','1月26–30日',350,'¥300–400',[link('酋长皇宫酒店官网','https://www.mandarinoriental.com/en/abu-dhabi/emirates-palace')]],
+  ['water',['亚特兰蒂斯水上世界','Aquaventure World Ticket in Atlantis Dubai'],'dubai',10,'7–14天','1月27日–2月3日',1500,'¥1,300–1,700',[link('官方网站','https://www.aquaventureworld.com/')]],
+  ['louvre',['海上卢浮宫','Louvre Abu Dhabi Ticket','阿布扎比海上卢浮宫'],'abuDhabi',4,'3–7天','1月28日–2月1日',280,'¥280',[link('官方网站','https://www.louvreabudhabi.ae/')]],
+  ['butterfly',['蝴蝶花园','The Butterfly Gardens Abu Dhabi Ticket','阿布扎比蝴蝶花园'],'abuDhabi',5,'3–7天','1月29日–2月2日',220,'¥220',[link('官方网站','https://butterflygardensabudhabi.com/plan-your-visit/')]],
+  ['frame',['迪拜相框','Dubai Frame Ticket'],'dubai',9,'3–7天','2月2–6日',200,'¥200',[link('迪拜旅游局购票指南','https://www.visitdubai.com/en/places-to-visit/dubai-frame')]],
+].map(([id,[name,ticketName,calendarName = name],region,day,ahead,window,price,range,links,note])=>({
+  id,name,ticketName,calendarName,region,day,ahead,window,price,range,links,note,
+}));
 export const bookings = Object.fromEntries(booking.map(item=>[item.id,item]));
 const list = (ids) => ids.map(id=>bookings[id]);
 const abra = {id:'abra',name:'传统木船（现场支付）',window:'2月8日',price:4,links:[link('迪拜RTA官网','https://www.rta.ae/')]};

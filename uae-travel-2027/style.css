@@ -128,6 +128,8 @@ button[aria-pressed="true"]:hover:not(:disabled) { background:#133f38; color:whi
 .toolbar { margin:.65rem 0; }
 .toolbar>p,.budget-footer>p { color:var(--muted); font-size:.87rem; }
 .filters { display:flex; flex-wrap:wrap; gap:.35rem; }
+.booking-filters { display:flex; flex-wrap:wrap; gap:.55rem 1.15rem; }
+.booking-item .check { overflow-wrap:anywhere; font-weight:650; }
 .item-list { padding:0 .9rem; }
 .booking-item { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:start; gap:.4rem 1.2rem; padding:.85rem 0; }
 .booking-item+.booking-item,.task-row+.task-row { border-top:1px solid var(--line); }
@@ -193,6 +195,7 @@ dialog::backdrop { background:#122d29ab; }
   .timeline>li { grid-template-columns:1fr; gap:.15rem; }
   .day-banner { min-height:139px; }
   .booking-item { gap:.35rem .65rem; }
+  .booking-filters { display:grid; gap:.55rem; }
   th,td { padding:.43rem .52rem; }
 }
 @media (prefers-reduced-motion:no-preference) { html { scroll-behavior:smooth; } }

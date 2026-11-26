@@ -1,4 +1,4 @@
-import { airfare, apps, booking, bookings, days, experiences, flights, groups, hotels, map, reminders, taskById, tasks, transport } from './data.js';
+import { airfare, apps, booking, bookingRegions, bookings, days, experiences, flights, groups, hotels, map, reminders, taskById, tasks, transport } from './data.js';
 
 const $ = (selector) => document.querySelector(selector);
 const format = new Intl.NumberFormat('zh-CN', { minimumFractionDigits:2, maximumFractionDigits:2 });
@@ -17,7 +17,7 @@ let storageAvailable = true;
 try { saved = JSON.parse(localStorage.getItem(storageKey) || '{}') || {}; } catch { storageAvailable = false; }
 const checked = new Set(Array.isArray(saved.checked) ? saved.checked.filter(id=>Object.hasOwn(taskById,id)) : ['flight','rose','creek']);
 const budget = Object.fromEntries(Object.entries(defaultBudget).map(([key,value])=>[key,amount(saved.budget?.[key] ?? value)]));
-const state = { day:1, bookingFilter:'all', taskFilter:'all', memo:typeof saved.memo === 'string' ? saved.memo.slice(0,20000) : '' };
+const state = { day:1, bookingFilter:'all', bookingRegion:'all', taskFilter:'all', memo:typeof saved.memo === 'string' ? saved.memo.slice(0,20000) : '' };
 const hotelTotal = hotels.reduce((sum,hotel)=>sum+Math.round(hotel.price*100),0)/100;
 const booked = Math.round((airfare + hotelTotal)*100)/100;
 const experienceTotal = experiences.reduce((sum,item)=>sum+item.price,0);
@@ -32,8 +32,9 @@ function save() {
   } catch { storageAvailable = false; }
   storageMessage();
 }
-function checkbox(id, label, source) {
-  return `<label class="check"><input type="checkbox" data-check="${id}" data-source="${source}" ${checked.has(id) ? 'checked' : ''}><span>${text(label)}</span></label>`;
+function checkbox(id, label, source, ticketName) {
+  const caption = ticketName ? `<span lang="en">${text(ticketName)}</span> (${text(label)})` : text(label);
+  return `<label class="check"><input type="checkbox" data-check="${id}" data-source="${source}" ${checked.has(id) ? 'checked' : ''}><span>${caption}</span></label>`;
 }
 function matchesFilter(item, filter) {
   return filter === 'all' || checked.has(item.id) === (filter === 'done');
@@ -42,12 +43,15 @@ function filterButtons(selector, kind, labels) {
   $(selector).innerHTML = Object.entries(labels).map(([filter,label])=>`<button type="button" data-filter="${filter}" data-kind="${kind}" aria-pressed="${state[kind] === filter}">${label}</button>`).join('');
 }
 function renderBookings() {
-  const count = booking.filter(item=>checked.has(item.id)).length;
-  $('#booking-count').textContent = `景点预约完成 ${count} / ${booking.length}`;
-  const visible = booking.filter(item=>matchesFilter(item,state.bookingFilter));
+  const { bookingRegion, bookingFilter } = state;
+  const regionItems = bookingRegion === 'all' ? booking : booking.filter(item=>item.region === bookingRegion);
+  const count = regionItems.filter(item=>checked.has(item.id)).length;
+  const regionLabel = bookingRegions[bookingRegion];
+  $('#booking-count').textContent = `${regionLabel ? `${regionLabel} · ` : ''}景点预约完成 ${count} / ${regionItems.length}`;
+  const visible = regionItems.filter(item=>matchesFilter(item,bookingFilter));
   $('#booking-list').innerHTML = visible.map(item=>`<article class="booking-item"><div>
-    ${checkbox(item.id,item.name,'booking')}
-    <p>游玩 2月${item.day}日 · 提前${item.ahead}</p><p>建议预约 ${item.window}</p>
+    ${checkbox(item.id,item.calendarName,'booking',item.ticketName)}
+    <p>${bookingRegions[item.region]} · 游玩 2月${item.day}日 · 提前${item.ahead}</p><p>建议预约 ${item.window}</p>
     ${item.note ? `<p class="warning">${text(item.note)}</p>` : ''}${outlinks(item.links)}
     </div><div class="booking-meta"><strong>${item.price ? money(item.price) : '免费'}</strong><small>双人预算</small></div></article>`).join('') || '<p class="empty">该筛选下暂无预约。</p>';
 }
@@ -152,8 +156,13 @@ function copyValue(kind) {
   const {rows,total,person,remaining} = budgetValues();
   return ['阿联酋旅行双人预算',`双人总预算 ${money(budget.total)}`,...rows.map(([label,value])=>`${label} ${money(value)}`),`预计双人总花费 ${money(total)}`,`人均 ${money(person)}`,`剩余 ${money(remaining)}`].join('\n');
 }
-const filterLabels = { bookingFilter:{all:'全部',pending:'待预订',done:'已预订'}, taskFilter:{all:'全部事项',pending:'待完成',done:'已完成'} };
+const filterLabels = {
+  bookingRegion:{all:'全部地区',...bookingRegions},
+  bookingFilter:{all:'全部状态',pending:'待预订',done:'已预订'},
+  taskFilter:{all:'全部事项',pending:'待完成',done:'已完成'},
+};
 const updateFilters = () => {
+  filterButtons('#booking-region','bookingRegion',filterLabels.bookingRegion);
   filterButtons('#booking-filter','bookingFilter',filterLabels.bookingFilter);
   filterButtons('#task-filter','taskFilter',filterLabels.taskFilter);
 };
@@ -172,7 +181,7 @@ document.addEventListener('click', event=>{
     state[kind] = filter;
     updateFilters();
     document.querySelector(`[data-kind="${kind}"][data-filter="${filter}"]`).focus();
-    if (kind === 'bookingFilter') renderBookings(); else renderTasks();
+    if (kind === 'taskFilter') renderTasks(); else renderBookings();
   } else if (action.dataset.copy) {
     copy(copyValue(action.dataset.copy));
   }

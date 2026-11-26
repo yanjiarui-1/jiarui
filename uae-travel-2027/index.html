@@ -64,7 +64,13 @@
         <section id="booking" class="chapter">
           <h2><span class="chapter-no">04</span> 购票与预约日历</h2>
           <p class="lede">按建议预约日期排列。优先关注未来博物馆和哈利法塔放票情况。</p>
-          <div class="toolbar"><div id="booking-filter" class="filters" role="group" aria-label="筛选预约"></div><p id="booking-count" aria-live="polite"></p></div>
+          <div class="toolbar booking-toolbar">
+            <div class="booking-filters">
+              <div id="booking-region" class="filters" role="group" aria-label="预约地区"></div>
+              <div id="booking-filter" class="filters" role="group" aria-label="预订状态"></div>
+            </div>
+            <p id="booking-count" aria-live="polite"></p>
+          </div>
           <div id="booking-list" class="panel item-list"></div>
           <p class="muted caption">预约窗口用于安排准备时间。价格、开放时段和场次以出行时的官方信息为准。</p>
         </section>
